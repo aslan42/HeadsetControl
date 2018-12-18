@@ -1,5 +1,6 @@
 #include "device_registry.h"
 
+#include "devices/corsair_hs70.h"
 #include "devices/corsair_void.h"
 #include "devices/corsair_voidpro.h"
 #include "devices/corsair_voidpro_wireless.h"
@@ -12,7 +13,7 @@
 #include <string.h>
 
 
-#define NUMDEVICES 8
+#define NUMDEVICES 9
 // array of pointers to device
 static struct device *(devicelist[NUMDEVICES]);
 
@@ -26,6 +27,7 @@ void init_devices()
     g633_init(&devicelist[5]);
     g930_init(&devicelist[6]);
     arctis7_init(&devicelist[7]);
+    hs70_init(&devicelist[8]);
 }
 
 int get_device(struct device* device_found, uint16_t idVendor, uint16_t idProduct)
