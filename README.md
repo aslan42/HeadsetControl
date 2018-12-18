@@ -7,6 +7,7 @@ talking. This differs from a simple loopback via PulseAudio as you won't have an
 
 ### Sidetone
 
+- Corsair HS70
 - Corsair Void (Wireless & Wired)
 - Corsair Void Pro (Wireless & Wired)
 - Logitech G930
@@ -53,7 +54,7 @@ Also you will have to download Xcode via the Mac App Store for the compilers.
 ### Compiling
 
 ```
-git clone https://github.com/Sapd/HeadsetControl && cd HeadsetControl
+git clone https://github.com/aslan42/HeadsetControl-HS70 && cd HeadsetControl
 mkdir build && cd build
 cmake ..
 make
