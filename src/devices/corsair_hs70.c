@@ -4,9 +4,6 @@
 #include <hidapi.h>
 #include <string.h>
 
-enum hs70_battery_flags {
-    HS70_BATTERY_MICUP = 128
-};
 
 static struct device device_hs70;
 
@@ -45,8 +42,7 @@ static int hs70_request_battery(hid_device *device_handle)
     // Answer of battery status
     // Index    0   1   2       3       4
     // Data     100 0   Loaded% 177     5 when loading, 0 when loading and off, 1 otherwise
-    //
-    // Loaded% has bitflag HS70_BATTERY_MICUP set when mic is in upper position
+
 
     int r = 0;
 
@@ -65,22 +61,11 @@ static int hs70_request_battery(hid_device *device_handle)
     if (r < 0) return r;
 
     if (data_read[4] == 0 || data_read[4] == 4 || data_read[4] == 5)
-    {
         return BATTERY_LOADING;
-    }
     else if (data_read[4] == 1)
-    {
-        // Discard HS70_BATTERY_MICUP when it's set
-        // see https://github.com/Sapd/HeadsetControl/issues/13
-        if (data_read[2] & HS70_BATTERY_MICUP)
-            return data_read[2] &~ HS70_BATTERY_MICUP;
-        else
-            return (int)data_read[2]; // battery status from 0 - 100
-    }
+        return (int)data_read[2]; // battery status from 0 - 100
     else
-    {
         return -100;
-    }
 }
 
 static int hs70_notification_sound(hid_device* device_handle, uint8_t soundid)
