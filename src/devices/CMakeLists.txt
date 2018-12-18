@@ -1,4 +1,6 @@
 set(SOURCE_FILES ${SOURCE_FILES}
+    ${CMAKE_CURRENT_SOURCE_DIR}/corsair_hs70.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/corsair_hs70.h
     ${CMAKE_CURRENT_SOURCE_DIR}/corsair_void.c
     ${CMAKE_CURRENT_SOURCE_DIR}/corsair_void.h
     ${CMAKE_CURRENT_SOURCE_DIR}/corsair_voidpro.c
